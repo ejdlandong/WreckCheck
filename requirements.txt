@@ -1,0 +1,7 @@
+pyqt5
+# Main requirements for WreckCheck
+flask
+pillow
+scikit-learn
+torch
+torchvision
