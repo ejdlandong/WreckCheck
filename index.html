@@ -34,7 +34,10 @@
         <div class="hero-content">
             <h1>Advanced Car Damage Detection</h1>
             <p>AI-Powered Damage Assessment & Analysis System</p>
-            <button class="cta-button" onclick="scrollToSection('detector')">Try Detector Now</button>
+            <div class="cta-group">
+                <button class="btn btn--primary" onclick="scrollToSection('detector')">Try Detector Now</button>
+                <button class="btn btn--secondary" onclick="scrollToSection('features')">Learn More</button>
+            </div>
         </div>
         <div class="hero-image">
             <div class="car-illustration">🚗</div>
@@ -100,7 +103,7 @@
                 <h3>Drop your image here</h3>
                 <p>or</p>
                 <input type="file" id="imageInput" class="file-input" accept="image/*">
-                <label for="imageInput" class="upload-label">Browse Files</label>
+                <button type="button" class="btn btn--secondary" id="selectImageBtn">Choose Image</button>
             </div>
 
             <div class="preview-section" id="previewSection" style="display: none;">
