@@ -11,9 +11,36 @@ import torch
 from torchvision import transforms
 from PIL import Image
 import pandas as pd
+<<<<<<< Updated upstream
 
 from src.model import SimpleCNN
 
+=======
+import cv2
+import numpy as np
+
+from src.model import SimpleCNN
+
+def preprocess_image(image_path):
+    """Apply Gaussian blur and contrast enhancement to reduce noise."""
+    img = cv2.imread(image_path)
+    if img is None:
+        raise ValueError(f"Could not load image: {image_path}")
+    
+    # Apply Gaussian blur to reduce grain
+    blurred = cv2.GaussianBlur(img, (5, 5), 0)
+    
+    # Enhance contrast using CLAHE
+    lab = cv2.cvtColor(blurred, cv2.COLOR_BGR2LAB)
+    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+    lab[:, :, 0] = clahe.apply(lab[:, :, 0])
+    enhanced = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+    
+    # Convert back to PIL Image
+    enhanced_pil = Image.fromarray(cv2.cvtColor(enhanced, cv2.COLOR_BGR2RGB))
+    return enhanced_pil
+
+>>>>>>> Stashed changes
 def predict_main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', default='model.pth', help='Path to saved model (.pth)')
@@ -47,7 +74,12 @@ def predict_main(argv=None):
             if not os.path.exists(path):
                 print(f'Warning: missing {path}, skipping')
                 continue
+<<<<<<< Updated upstream
             img = Image.open(path).convert('RGB')
+=======
+            # Preprocess the image
+            img = preprocess_image(path)
+>>>>>>> Stashed changes
             t = transform(img).unsqueeze(0)
             outs = model(t)
             _, pred = torch.max(outs, 1)
