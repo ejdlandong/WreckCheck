@@ -17,7 +17,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.helpers import seed_everything, ensure_dir
 from preprocessing.preprocess import get_preprocessing
 from data_augmentation.augment import get_augmentation
-from dataset_loader import ImageCSVLoader
+from dataset import ImageCSVLoader
 
 
 def train_main():
